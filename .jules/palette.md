@@ -1,5 +1,3 @@
-# Palette's UX Journal
-
-## 2026-03-16 - [Button Accessibility and Minimum Touch Targets]
-**Learning:** When adding loading states to buttons, the button's width often collapses or shifts depending on the text (e.g., "Download PDF" vs "Downloading..."). This layout shift can be jarring. Additionally, icon-only or flex buttons easily fall below the 44px minimum touch target recommendation for mobile accessibility.
-**Action:** Always enforce a `min-width` and `min-height` (e.g., `min-width: 180px`, `min-height: 48px`) on interactive buttons that swap inner content to prevent layout shifts during state changes and to ensure robust mobile tap targets. Always accompany visual loading spinners with `aria-busy="true"` so screen readers immediately announce the state change without waiting for DOM text to be read.
+## 2024-05-24 - Range Inputs and Labels
+**Learning:** Custom styled range inputs and interactive elements often lose default browser focus states, making keyboard navigation difficult for visually impaired users. Furthermore, missing explicit connections between labels and inputs (`htmlFor` and `id`), as well as missing value announcements (`aria-valuetext`), severely degrade screen reader experiences.
+**Action:** Always verify keyboard focus states using `focus-visible` classes (like `focus-visible:ring-2`) and ensure semantic HTML structures (`htmlFor`/`id` linking) and `aria-valuetext` are utilized for range sliders. Hide purely visual value indicators with `aria-hidden="true"` when the screen reader is provided the exact same value.

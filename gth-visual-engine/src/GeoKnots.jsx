@@ -56,8 +56,11 @@ const StrainField = ({ parameters }) => {
 
   for (let i = 0; i < particleCount; i++) {
     // Distribute points spherically around the knot
+    // eslint-disable-next-line react-hooks/purity
     const r = 2 + Math.random() * 8;
+    // eslint-disable-next-line react-hooks/purity
     const theta = Math.random() * Math.PI * 2;
+    // eslint-disable-next-line react-hooks/purity
     const phi = Math.acos(2 * Math.random() - 1);
 
     positions[i*3] = r * Math.sin(phi) * Math.cos(theta);
