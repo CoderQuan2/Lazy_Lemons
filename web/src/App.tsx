@@ -1,30 +1,17 @@
-import { useState, useRef, useEffect } from 'react'
+import { useState } from 'react'
 import './App.css'
 
 function App() {
   const [isDownloading, setIsDownloading] = useState(false);
-  const timeoutRef = useRef<number | null>(null);
 
-  // ⚡ Bolt Auto-Patch
-  // Optimization: Cleanup simulated download timeout on unmount.
-  // Performance impact: Prevents memory leaks and React state updates on unmounted components
-  // by explicitly clearing pending timers. Reduces risk of stale closures and Zombie components.
   const handleDownload = () => {
     setIsDownloading(true);
     // Simulate download delay
-    timeoutRef.current = window.setTimeout(() => {
+    setTimeout(() => {
       setIsDownloading(false);
       alert('Download complete! (Simulated)');
     }, 1500);
   };
-
-  useEffect(() => {
-    return () => {
-      if (timeoutRef.current !== null) {
-        window.clearTimeout(timeoutRef.current);
-      }
-    };
-  }, []);
 
   return (
     <div className="container">
