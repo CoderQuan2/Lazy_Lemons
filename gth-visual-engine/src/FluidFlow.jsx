@@ -9,10 +9,11 @@ const ParticleSystem = ({ parameters }) => {
   const particleCount = 10000;
 
   // Initialize particles
-  const [positions, phases, radii] = useMemo(() => {
+  const [positions, phases, radii, invSqrtRadii] = useMemo(() => {
     const pos = new Float32Array(particleCount * 3);
     const ph = new Float32Array(particleCount);
     const r = new Float32Array(particleCount);
+    const invR = new Float32Array(particleCount);
 
     for (let i = 0; i < particleCount; i++) {
       // eslint-disable-next-line react-hooks/purity
@@ -28,8 +29,9 @@ const ParticleSystem = ({ parameters }) => {
 
       ph[i] = theta;
       r[i] = radius;
+      invR[i] = 1.0 / Math.sqrt(radius); // Precompute inverse square roots
     }
-    return [pos, ph, r];
+    return [pos, ph, r, invR];
   }, [particleCount]);
 
   useFrame((state) => {
@@ -45,15 +47,21 @@ const ParticleSystem = ({ parameters }) => {
     // Particles organize into a rotating wake
     // Rotation speed depends on mass, radius, and Re (representing cascade efficiency)
 
+    // Hoist constant wake factor calculation out of the loop
+    // This saves ~10000 multiplications per frame
+    const wakeFactor = (Re / 1000) * (rho0 / 10) * 0.05;
+
     for (let i = 0; i < particleCount; i++) {
       const radius = radii[i];
 
       // Calculate angular velocity based on GTH principles (flat rotation curve outer region)
       // v = sqrt(GM/r + beta * r) where beta is wake contribution
-      const baseVelocity = Math.sqrt(mass / radius);
+
+      // Performance Optimization: Replaced O(N) Math.sqrt calls with precomputed inverse roots
+      const baseVelocity = sqrtMass * invSqrtRadii[i];
 
       // The inverse cascade term (simplified representation)
-      const wakeContribution = (Re / 1000) * (rho0 / 10) * radius * 0.05;
+      const wakeContribution = wakeFactor * radius;
       const effectiveVelocity = baseVelocity + wakeContribution;
 
       const angularVelocity = effectiveVelocity / radius;
@@ -65,7 +73,7 @@ const ParticleSystem = ({ parameters }) => {
       // Update position
       positions[i * 3] = radius * Math.cos(phases[i]);
       // Small vertical oscillation based on radius to simulate fluid waves
-      positions[i * 3 + 1] += Math.sin(time * 2 + phases[i] * 5) * 0.005;
+      positions[i * 3 + 1] += Math.sin(time2 + phases[i] * 5.0) * 0.005;
       positions[i * 3 + 2] = radius * Math.sin(phases[i]);
     }
 
