@@ -47,11 +47,9 @@ const ParticleSystem = ({ parameters }) => {
     // Particles organize into a rotating wake
     // Rotation speed depends on mass, radius, and Re (representing cascade efficiency)
 
-    // Performance Optimization: Hoist loop-invariant constants
-    // Eliminates redundant math calculations from the O(N) loop
-    const sqrtMass = Math.sqrt(mass);
-    const wakeFactor = (Re / 1000.0) * (rho0 / 10.0) * 0.05;
-    const time2 = time * 2.0;
+    // Hoist constant wake factor calculation out of the loop
+    // This saves ~10000 multiplications per frame
+    const wakeFactor = (Re / 1000) * (rho0 / 10) * 0.05;
 
     for (let i = 0; i < particleCount; i++) {
       const radius = radii[i];
