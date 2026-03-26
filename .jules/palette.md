@@ -1,5 +1,3 @@
-# Palette's UX Journal
-
-## 2026-03-16 - [Button Accessibility and Minimum Touch Targets]
-**Learning:** When adding loading states to buttons, the button's width often collapses or shifts depending on the text (e.g., "Download PDF" vs "Downloading..."). This layout shift can be jarring. Additionally, icon-only or flex buttons easily fall below the 44px minimum touch target recommendation for mobile accessibility.
-**Action:** Always enforce a `min-width` and `min-height` (e.g., `min-width: 180px`, `min-height: 48px`) on interactive buttons that swap inner content to prevent layout shifts during state changes and to ensure robust mobile tap targets. Always accompany visual loading spinners with `aria-busy="true"` so screen readers immediately announce the state change without waiting for DOM text to be read.
+## 2024-05-24 - Accessibility of Range Inputs in Scientific UI
+**Learning:** For scientific applications with dynamic parameter controls, adding `aria-valuenow`, `aria-valuemin`, and `aria-valuemax` alongside a properly linked `<label>` ensures screen readers can accurately communicate the current value to users. `aria-hidden="true"` on the visual numeric display avoids redundant readout.
+**Action:** Always map range input states to ARIA attributes and hide duplicate visual representations from screen readers to prevent cluttered feedback.
