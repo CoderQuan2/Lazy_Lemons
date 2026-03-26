@@ -52,23 +52,21 @@ const StrainField = ({ parameters }) => {
   const pointsRef = useRef();
   const particleCount = 2000;
 
-  const positions = useMemo(() => {
-    const pos = new Float32Array(particleCount * 3);
-    for (let i = 0; i < particleCount; i++) {
-      // Distribute points spherically around the knot
-      // eslint-disable-next-line react-hooks/purity
-      const r = 2 + Math.random() * 8;
-      // eslint-disable-next-line react-hooks/purity
-      const theta = Math.random() * Math.PI * 2;
-      // eslint-disable-next-line react-hooks/purity
-      const phi = Math.acos(2 * Math.random() - 1);
+  const positions = new Float32Array(particleCount * 3);
 
-      pos[i*3] = r * Math.sin(phi) * Math.cos(theta);
-      pos[i*3+1] = r * Math.sin(phi) * Math.sin(theta);
-      pos[i*3+2] = r * Math.cos(phi);
-    }
-    return pos;
-  }, [particleCount]);
+  for (let i = 0; i < particleCount; i++) {
+    // Distribute points spherically around the knot
+    // eslint-disable-next-line react-hooks/purity
+    const r = 2 + Math.random() * 8;
+    // eslint-disable-next-line react-hooks/purity
+    const theta = Math.random() * Math.PI * 2;
+    // eslint-disable-next-line react-hooks/purity
+    const phi = Math.acos(2 * Math.random() - 1);
+
+    positions[i*3] = r * Math.sin(phi) * Math.cos(theta);
+    positions[i*3+1] = r * Math.sin(phi) * Math.sin(theta);
+    positions[i*3+2] = r * Math.cos(phi);
+  }
 
   useFrame((state) => {
     if (!pointsRef.current) return;
