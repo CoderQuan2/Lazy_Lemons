@@ -5,24 +5,29 @@ import GeoKnots from './GeoKnots';
 import Relaxation from './Relaxation';
 import RotationCurves from './RotationCurves';
 
+const defaultParameters = {
+  cs: 1.0,     // Speed of Sound
+  mPsi: 1.0,   // Scalar Mass
+  rho0: 10,    // Fluid Density
+  Re: 100,     // Reynolds Number
+  eta: 0.1,    // Viscosity
+  tau: 1.0,    // Relaxation Time
+  mass: 10,    // Central Mass
+};
+
 function App() {
   const [activeTab, setActiveTab] = useState('fluid');
 
-  const [parameters, setParameters] = useState({
-    cs: 1.0,     // Speed of Sound
-    mPsi: 1.0,   // Scalar Mass
-    rho0: 10,    // Fluid Density
-    Re: 100,     // Reynolds Number
-    eta: 0.1,    // Viscosity
-    tau: 1.0,    // Relaxation Time
-    mass: 10,    // Central Mass
-  });
+  const [parameters, setParameters] = useState(defaultParameters);
+
+  const resetParameters = () => setParameters(defaultParameters);
 
   return (
     <div className="flex h-screen bg-black text-white overflow-hidden font-sans">
       <Sidebar
         parameters={parameters}
         setParameters={setParameters}
+        resetParameters={resetParameters}
         activeTab={activeTab}
         setActiveTab={setActiveTab}
       />

@@ -43,6 +43,9 @@ const ParticleSystem = ({ parameters }) => {
     // Extract parameters
     const { mass, rho0, Re } = parameters;
 
+    // Calculate sqrtMass once per frame
+    const sqrtMass = Math.sqrt(mass);
+
     // GTH specific physics simulation: Inverse Energy Cascade
     // Particles organize into a rotating wake
     // Rotation speed depends on mass, radius, and Re (representing cascade efficiency)
@@ -73,7 +76,7 @@ const ParticleSystem = ({ parameters }) => {
       // Update position
       positions[i * 3] = radius * Math.cos(phases[i]);
       // Small vertical oscillation based on radius to simulate fluid waves
-      positions[i * 3 + 1] += Math.sin(time2 + phases[i] * 5.0) * 0.005;
+      positions[i * 3 + 1] += Math.sin(time + phases[i] * 5.0) * 0.005;
       positions[i * 3 + 2] = radius * Math.sin(phases[i]);
     }
 
