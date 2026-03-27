@@ -53,6 +53,7 @@ const ParticleSystem = ({ parameters }) => {
     // Hoist constant wake factor calculation out of the loop
     // This saves ~10000 multiplications per frame
     const wakeFactor = (Re / 1000) * (rho0 / 10) * 0.05;
+    const sqrtMass = Math.sqrt(mass * 10);
 
     for (let i = 0; i < particleCount; i++) {
       const radius = radii[i];

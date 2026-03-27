@@ -41,9 +41,17 @@ const ViscoelasticWave = ({ parameters }) => {
     // In GTH, tau * stress_dot + stress = -2 * eta * strain_rate
     // This is a simplified 1D-like projection onto the 2D grid for visual purposes
 
+    // Bolt Optimization: Hoisting invariant variables out of the inner loop and replacing O(N^2)
+    // division with multiplication. This loop runs 50x50 = 2500 times per frame.
+    // Precomputing csSq and invEffectiveTau saves ~2500 multiplications and ~2500 divisions per frame.
+    const effectiveTau = Math.max(0.01, tau);
+    const invEffectiveTau = 1.0 / effectiveTau;
+    const csSq = cs * cs;
+    const rowStride = gridSize + 1;
+
     for (let i = 0; i <= gridSize; i++) {
       for (let j = 0; j <= gridSize; j++) {
-        const idx = i * (gridSize + 1) + j;
+        const idx = i * rowStride + j;
 
         // Skip edges
         if (i === 0 || i === gridSize || j === 0 || j === gridSize) continue;
@@ -51,8 +59,8 @@ const ViscoelasticWave = ({ parameters }) => {
         // Calculate spatial derivative (Laplacian for wave propagation)
         const left = isState.positions[idx - 1];
         const right = isState.positions[idx + 1];
-        const up = isState.positions[idx - (gridSize + 1)];
-        const down = isState.positions[idx + (gridSize + 1)];
+        const up = isState.positions[idx - rowStride];
+        const down = isState.positions[idx + rowStride];
         const center = isState.positions[idx];
 
         const laplacian = (left + right + up + down - 4 * center);
@@ -63,14 +71,12 @@ const ViscoelasticWave = ({ parameters }) => {
         // Israel-Stewart relaxation update
         // tau * dPi/dt + Pi = -eta * sigma
         // explicit Euler integration
-        const effectiveTau = Math.max(0.01, tau);
-
-        const stressDerivative = (-isState.stresses[idx] - eta * strainRate) / effectiveTau;
+        const stressDerivative = (-isState.stresses[idx] - eta * strainRate) * invEffectiveTau;
         isState.stresses[idx] += stressDerivative * dt;
 
         // Acceleration = elastic wave + viscoelastic stress gradient
         // dv/dt = c_s^2 * Laplacian(u) + Div(Pi)
-        const elasticForce = cs * cs * laplacian;
+        const elasticForce = csSq * laplacian;
         const viscousForce = isState.stresses[idx]; // Simplified divergence
 
         let acceleration = elasticForce + viscousForce;
