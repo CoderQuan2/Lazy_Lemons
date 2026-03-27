@@ -50,6 +50,7 @@ const ParticleSystem = ({ parameters }) => {
     // Hoist constant wake factor calculation out of the loop
     // This saves ~10000 multiplications per frame
     const wakeFactor = (Re / 1000) * (rho0 / 10) * 0.05;
+    const sqrtMass = Math.sqrt(mass * 10);
 
     for (let i = 0; i < particleCount; i++) {
       const radius = radii[i];
@@ -73,7 +74,7 @@ const ParticleSystem = ({ parameters }) => {
       // Update position
       positions[i * 3] = radius * Math.cos(phases[i]);
       // Small vertical oscillation based on radius to simulate fluid waves
-      positions[i * 3 + 1] += Math.sin(time2 + phases[i] * 5.0) * 0.005;
+      positions[i * 3 + 1] += Math.sin(time + phases[i] * 5.0) * 0.005;
       positions[i * 3 + 2] = radius * Math.sin(phases[i]);
     }
 
