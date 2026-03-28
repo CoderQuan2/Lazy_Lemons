@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { RotateCcw } from 'lucide-react';
 
 const Sidebar = ({ parameters, setParameters, resetParameters, activeTab, setActiveTab }) => {
+  const [isResetting, setIsResetting] = useState(false);
   const tabs = [
     { id: 'fluid', label: 'Fluid Wake & Flow' },
     { id: 'geoknot', label: 'GeoKnots (Topology)' },
@@ -14,6 +15,12 @@ const Sidebar = ({ parameters, setParameters, resetParameters, activeTab, setAct
       ...parameters,
       [key]: parseFloat(e.target.value)
     });
+  };
+
+  const handleReset = () => {
+    setIsResetting(true);
+    resetParameters();
+    setTimeout(() => setIsResetting(false), 500); // Visual feedback duration
   };
 
   const paramConfig = [
@@ -54,13 +61,16 @@ const Sidebar = ({ parameters, setParameters, resetParameters, activeTab, setAct
       <div>
         <div className="flex items-center justify-between mb-4">
           <h2 className="text-lg font-semibold text-slate-200">Controllable Parameters</h2>
+          <div aria-live="polite" className="sr-only">
+            {isResetting ? "Parameters reset to default" : ""}
+          </div>
           <button
-            onClick={resetParameters}
+            onClick={handleReset}
             aria-label="Reset to default parameters"
             title="Reset to default parameters"
             className="p-1.5 text-slate-400 hover:text-white hover:bg-slate-800 rounded-md transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900"
           >
-            <RotateCcw size={16} aria-hidden="true" />
+            <RotateCcw size={16} aria-hidden="true" className={isResetting ? "animate-spin" : ""} />
           </button>
         </div>
         <div className="flex flex-col gap-6">
