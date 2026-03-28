@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './index.css'; // Injecting Tailwind substrate to prevent layout collapse
 import Sidebar from './Sidebar';
 import FluidFlow from './FluidFlow';
 import GeoKnots from './GeoKnots';
@@ -9,13 +10,13 @@ function App() {
   const [activeTab, setActiveTab] = useState('fluid');
 
   const [parameters, setParameters] = useState({
-    cs: 1.0,     // Speed of Sound
-    mPsi: 1.0,   // Scalar Mass
-    rho0: 10,    // Fluid Density
-    Re: 100,     // Reynolds Number
-    eta: 0.1,    // Viscosity
-    tau: 1.0,    // Relaxation Time
-    mass: 10,    // Central Mass
+    cs: 1.0,     
+    mPsi: 1.0,   
+    rho0: 10,    
+    Re: 100,     
+    eta: 0.1,    
+    tau: 1.0,    
+    mass: 10,    
   });
 
   return (

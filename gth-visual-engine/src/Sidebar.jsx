@@ -1,6 +1,7 @@
 import React from 'react';
+import { RotateCcw } from 'lucide-react';
 
-const Sidebar = ({ parameters, setParameters, activeTab, setActiveTab }) => {
+const Sidebar = ({ parameters, setParameters, resetParameters, activeTab, setActiveTab }) => {
   const tabs = [
     { id: 'fluid', label: 'Fluid Wake & Flow' },
     { id: 'geoknot', label: 'GeoKnots (Topology)' },
@@ -37,7 +38,8 @@ const Sidebar = ({ parameters, setParameters, activeTab, setActiveTab }) => {
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
-              className={`text-left px-4 py-2 rounded transition-colors ${
+                aria-current={activeTab === tab.id ? 'true' : undefined}
+                className={`text-left px-4 py-2 rounded transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900 ${
                 activeTab === tab.id
                   ? 'bg-blue-600 text-white font-medium'
                   : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
@@ -50,24 +52,36 @@ const Sidebar = ({ parameters, setParameters, activeTab, setActiveTab }) => {
       </div>
 
       <div>
-        <h2 className="text-lg font-semibold mb-4 text-slate-200">Controllable Parameters</h2>
+        <div className="flex items-center justify-between mb-4">
+          <h2 className="text-lg font-semibold text-slate-200">Controllable Parameters</h2>
+          <button
+            onClick={resetParameters}
+            aria-label="Reset to default parameters"
+            title="Reset to default parameters"
+            className="p-1.5 text-slate-400 hover:text-white hover:bg-slate-800 rounded-md transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900"
+          >
+            <RotateCcw size={16} aria-hidden="true" />
+          </button>
+        </div>
         <div className="flex flex-col gap-6">
           {paramConfig.map((config) => (
             <div key={config.key} className="flex flex-col">
               <div className="flex justify-between items-center mb-1">
-                <label className="text-sm font-medium text-slate-300">{config.label}</label>
-                <span className="text-xs font-mono text-blue-300 bg-slate-800 px-2 py-1 rounded">
+                <label htmlFor={config.key} className="text-sm font-medium text-slate-300">{config.label}</label>
+                <span aria-hidden="true" className="text-xs font-mono text-blue-300 bg-slate-800 px-2 py-1 rounded">
                   {parameters[config.key]} {config.unit}
                 </span>
               </div>
               <input
+                id={config.key}
                 type="range"
                 min={config.min}
                 max={config.max}
                 step={config.step}
                 value={parameters[config.key]}
+                aria-valuetext={`${parameters[config.key]} ${config.unit}`}
                 onChange={(e) => handleSliderChange(e, config.key)}
-                className="w-full h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-blue-500"
+                className="w-full h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-blue-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900"
               />
             </div>
           ))}
