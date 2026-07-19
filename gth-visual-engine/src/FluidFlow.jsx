@@ -80,3 +80,18 @@ const ParticleSystem = ({ parameters }) => {
 };
 
 // ... Rest of FluidFlow component remains the same
+
+const FluidFlow = ({ parameters }) => {
+  return (
+    <div style={{ width: '100%', height: '100%' }}>
+      <Canvas camera={{ position: [0, 10, 20], fov: 60 }}>
+        <ambientLight intensity={0.5} />
+        <pointLight position={[10, 10, 10]} intensity={1} />
+        <ParticleSystem parameters={parameters} />
+        <OrbitControls enablePan={true} enableZoom={true} enableRotate={true} />
+      </Canvas>
+    </div>
+  );
+};
+
+export default FluidFlow;

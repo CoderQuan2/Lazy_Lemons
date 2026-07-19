@@ -6,11 +6,17 @@ function App() {
 
   const handleDownload = () => {
     setIsDownloading(true);
-    // Simulate download delay
+
+    const link = document.createElement('a');
+    link.href = '/Geotemporal_Hydrodynamics_The_Unified_Fluid_Theory.pdf';
+    link.download = 'Geotemporal_Hydrodynamics_The_Unified_Fluid_Theory.pdf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+
     setTimeout(() => {
       setIsDownloading(false);
-      alert('Download complete! (Simulated)');
-    }, 1500);
+    }, 500);
   };
 
   return (
