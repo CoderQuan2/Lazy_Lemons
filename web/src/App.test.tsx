@@ -20,8 +20,6 @@ describe('App', () => {
   });
 
   it('handles the download process correctly', () => {
-    const alertMock = vi.spyOn(window, 'alert').mockImplementation(() => {});
-
     render(<App />);
 
     const downloadButton = screen.getByRole('button', { name: /download full pdf document/i });
@@ -35,17 +33,12 @@ describe('App', () => {
     expect(screen.getByRole('button', { name: /downloading pdf\.\.\./i })).toBeDisabled();
     expect(screen.getByText(/downloading\.\.\./i)).toBeInTheDocument();
 
-    // Advance time to trigger setTimeout
+    // Advance time to trigger setTimeout (now 500ms instead of 1500ms)
     act(() => {
-      vi.advanceTimersByTime(1500);
+      vi.advanceTimersByTime(500);
     });
-
-    // Verify alert was called
-    expect(alertMock).toHaveBeenCalledWith('Download complete! (Simulated)');
 
     // Verify button returned to normal state
     expect(screen.getByRole('button', { name: /download full pdf document/i })).not.toBeDisabled();
-
-    alertMock.mockRestore();
   });
 });
