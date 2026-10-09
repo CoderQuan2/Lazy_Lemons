@@ -3,10 +3,10 @@ import { RotateCcw } from 'lucide-react';
 
 const Sidebar = ({ parameters, setParameters, resetParameters, activeTab, setActiveTab }) => {
   const tabs = [
-    { id: 'fluid', label: 'Fluid Wake & Flow' },
-    { id: 'geoknot', label: 'GeoKnots (Topology)' },
+    { id: 'fluid', label: 'Disk Flow (BST)' },
+    { id: 'yjunction', label: 'Y-Junction (Hadrons)' },
     { id: 'relaxation', label: 'Viscoelastic Relaxation' },
-    { id: 'rotation', label: 'Rotation Curves' },
+    { id: 'rotation', label: 'Rotation Curves (BST)' },
   ];
 
   const handleSliderChange = (e, key) => {
@@ -29,7 +29,7 @@ const Sidebar = ({ parameters, setParameters, resetParameters, activeTab, setAct
   return (
     <div className="w-80 bg-slate-900 text-slate-100 p-6 flex flex-col h-full overflow-y-auto border-r border-slate-700 shadow-xl">
       <h1 className="text-2xl font-bold mb-2 text-blue-400">GTH Visual Engine</h1>
-      <p className="text-sm text-slate-400 mb-8 border-b border-slate-700 pb-4">Geotemporal Hydrodynamics</p>
+      <p className="text-sm text-slate-400 mb-8 border-b border-slate-700 pb-4">Geotopological Hydrodynamics</p>
 
       <div className="mb-8">
         <h2 className="text-lg font-semibold mb-3 text-slate-200">Visualization Mode</h2>
