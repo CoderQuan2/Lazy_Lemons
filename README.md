@@ -16,6 +16,7 @@ No miracles. Only facts. Every physics claim in this repo is tier-labeled:
 | `gth-visual-engine/` | Vite + React + Three.js interactive visualizer: BST-screened disk flow, Y-junction baryon, Israel–Stewart relaxation, BST rotation curves |
 | `web/` | Landing page (React) with manuscript PDF download |
 | `latex/` | LaTeX manuscript source (`main.tex`) and compiled `main.pdf` |
+| `manuscripts/` | Full theory documents: the ground-up rebuild manuscript (`.md`), the 28-page update booklet (`.pdf`) |
 | `verify.py`, `verify2.py` | Playwright screenshot checks against the local dev server (`http://localhost:5173`) |
 
 ## Physics status (October 2026)
