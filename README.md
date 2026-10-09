@@ -22,7 +22,7 @@ No miracles. Only facts. Every physics claim in this repo is tier-labeled:
 
 ## Physics status (October 2026)
 
-- **a₀ theorem** [THEOREM]: a₀ = √(E·G_N) = 1.172×10⁻¹⁰ m/s², 2.33% from observed, zero fitted parameters
+- **a₀ theorem** [THEOREM — structural form only]: a₀ = √(E·G_N), geometric factor exactly 1; the 2.33% numerical agreement is fitted by ancestry
 - **BST screening kernel** [PHENOMENOLOGY]: g_obs = g_bar/(1−e^{−√(g_bar/a₀)}), χ² = 10.54 on SPARC
 - **Y-junction baryons** [PROVISIONAL]: quarks are 0D endpoints, not particles; mass is relational
 - **Killed**: GW echoes (κ_conv≡0), dark energy mechanism, 1/49 loop factor, K_w pulsar torque, trefoil hadrons
