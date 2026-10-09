@@ -14,8 +14,8 @@ describe('App', () => {
   it('renders headings and download button', () => {
     render(<App />);
 
-    expect(screen.getByText('Geotemporal Hydrodynamics')).toBeInTheDocument();
-    expect(screen.getByText('The Unified Fluid Theory')).toBeInTheDocument();
+    expect(screen.getByText('Geotopological Hydrodynamics')).toBeInTheDocument();
+    expect(screen.getByText('A Falsification-Tested Research Program')).toBeInTheDocument();
     expect(screen.getByRole('button', { name: /download full pdf document/i })).toBeInTheDocument();
   });
 
@@ -25,20 +25,16 @@ describe('App', () => {
     const downloadButton = screen.getByRole('button', { name: /download full pdf document/i });
     expect(downloadButton).not.toBeDisabled();
 
-    // Click the button using fireEvent to avoid userEvent async issues with fakeTimers
     fireEvent.click(downloadButton);
 
-    // Verify loading state
-    expect(screen.getByRole('button', { name: /downloading pdf\.\.\./i })).toBeInTheDocument();
-    expect(screen.getByRole('button', { name: /downloading pdf\.\.\./i })).toBeDisabled();
-    expect(screen.getByText(/downloading\.\.\./i)).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /downloading pdf/i })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /downloading pdf/i })).toBeDisabled();
+    expect(screen.getByText(/downloading/i)).toBeInTheDocument();
 
-    // Advance time to trigger setTimeout (now 500ms instead of 1500ms)
     act(() => {
       vi.advanceTimersByTime(500);
     });
 
-    // Verify button returned to normal state
     expect(screen.getByRole('button', { name: /download full pdf document/i })).not.toBeDisabled();
   });
 });

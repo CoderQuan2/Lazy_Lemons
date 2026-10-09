@@ -15,47 +15,73 @@
     linkcolor=linkblue,
     citecolor=linkblue,
     urlcolor=linkblue,
-    pdftitle={Geotemporal Hydrodynamics: The Unified Fluid Theory},
+    pdftitle={Geotopological Hydrodynamics},
     pdfauthor={T. Abram},
     pdfsubject={Physics, Cosmology},
-    pdfkeywords={Fluid Theory, Gravity, Cosmology},
+    pdfkeywords={MOND, screening, hadrons, falsification},
     bookmarks=true,
     pdfdisplaydoctitle=true,
 ]{hyperref}
 
-\title{Geotemporal Hydrodynamics\\ \Large The Unified Fluid Theory}
+\newcommand{\tier}[1]{\textbf{[#1]}}
+
+\title{Geotopological Hydrodynamics}
 \author{T. Abram}
-\date{March 2026}
+\date{March 2026 (landing-page manuscript; superseded in part --- see note below)}
 
 \begin{document}
 
 \maketitle
 
 \begin{abstract}
-Geotemporal Hydrodynamics (GTH) proposes that spacetime is a macroscopic quantum superfluid
-rather than an empty geometric manifold. This framework models the vacuum as a 5D
-viscoelastic substrate with order parameter $\Psi = \rho e^{i\theta}$. This new report highlights four
-key phenomenological pillars of the theory based on recent visualizations.
+Geotopological Hydrodynamics (GTH) is a research program describing a supersolid vacuum
+substrate in five-dimensional spacetime. Its firmest result is an anchored theorem for the
+MOND acceleration scale, $a_0 = \sqrt{E\cdot G_N} = 1.172\times 10^{-10}\,\mathrm{m/s^2}$,
+2.33\% from the observed value with zero fitted parameters \tier{THEOREM}. Galactic rotation
+curves are addressed by the baryonic screening kernel
+$g_{\mathrm{obs}} = g_{\mathrm{bar}}/(1-e^{-\sqrt{g_{\mathrm{bar}}/a_0}})$
+\tier{PHENOMENOLOGY, $\chi^2 = 10.54$ on SPARC}. Baryons are modeled as Y-junction network
+defects with quarks as zero-dimensional endpoints \tier{PROVISIONAL}. Honest negatives are
+recorded at equal weight: gravitational-wave echoes excluded, dark-energy no-go, 1/49 artifact.
 \end{abstract}
 
-\section{Fluid Wake and Flow}
-Gravity emerges as the long-wavelength acoustic response of the substrate. The effective flow velocity incorporates both a Newtonian gravitational term and a macroscopic wake term parameterized by the Reynolds number ($Re$) and fluid density ($\rho_0$).
+\noindent\textit{Note (October 2026): this manuscript predates the falsification campaign.
+Claims are tier-labeled; see the current update booklet for the audited record.}
+
+\section{The \texorpdfstring{$a_0$}{a0} theorem}
+For a galactic disk (uniaxial stress, laterally free substrate) the relevant modulus is Young's
+modulus $E = 9KG/(3K+G)$, with geometric factor exactly 1 from energy balance:
 \begin{equation}
-v = \sqrt{\frac{GM}{r} + \beta r}
+a_0 = \sqrt{E\cdot G_N} = 1.1720\times 10^{-10}\,\mathrm{m/s^2}.
 \end{equation}
-where $\beta \propto Re \cdot \rho_0$.
+This is 2.33\% from the observed MOND scale with no additional parameter in the formula
+\tier{THEOREM}. It is conditional on the calibrated moduli $K$, $G$ and independent of the
+acoustic sector.
 
-\section{GeoKnots (Topology)}
-Particles are not point objects but stable topological defects (GeoKnots) in the 5D viscoelastic substrate. The fundamental particle is modeled as a Trefoil Knot ($3_1$). Rest mass is defined as the localized kinetic bending energy of the substrate:
+\section{Screening: the BST kernel}
+The radial acceleration relation is fit by
 \begin{equation}
-m_e \propto \frac{\sqrt{\rho_0}}{m_\psi^2}
+g_{\mathrm{obs}} = \frac{g_{\mathrm{bar}}}{1-e^{-\sqrt{g_{\mathrm{bar}}/a_0}}},
 \end{equation}
-Adjusting the scalar mass ($m_\psi$) changes the knot's thickness, while $\rho_0$ alters its overall scale.
+an exact algebraic identity ($\chi^2 = 10.54$) with no microscopic derivation yet
+\tier{PHENOMENOLOGY}. Three derivation routes failed (static vortex-lattice elasticity,
+KTHNY melting, thermal $\sqrt{g}$ oscillator); deriving it from vortex-lattice elasticity
+remains the precise open problem.
 
-\section{Viscoelastic Relaxation}
-The substrate exhibits finite relaxation times ($\tau$) when deformed, leading to viscoelastic damping. The fluid's response to rapid perturbations is governed by Israel-Stewart hydrodynamics, ensuring causality and providing a mechanism for ringdown dispersion/damping consistent with gravitational wave observations.
+\section{Hadrons: the Y-junction (provisional)}
+The baryon is modeled as a zero-dimensional network defect: three adjoint flux-tube prongs
+meeting through $d_{abc}$, with quark endpoints carrying color (brane index), flavor
+(winding number), and charge $q = m/3$ via the Witten effect. The proton's 938~MeV is
+relational --- it lives in the tubes and junction, not the endpoints \tier{PROVISIONAL}.
+The scalar trefoil picture of hadrons is superseded.
 
-\section{Rotation Curves}
-At galactic scales, the inverse energy cascade of the superfluid vacuum leads to anomalous rotation curves. While Newtonian predictions fall off as $v \propto 1/\sqrt{r}$, the GTH framework provides a non-Keplerian flat profile at large radii due to the $\beta r$ term, naturally accounting for dark matter phenomenology.
+\section{Kill ledger}
+\tier{KILLED}: GW echoes (seven nulls; $\kappa_{\mathrm{conv}} \equiv 0$ structurally);
+dark energy (structural no-go, tuning $6.2\times 10^{-36}$); the 1/49 loop factor
+(fitting artifact); pulsar torque $K_w$ (dead at $\sim$16$\sigma$); thermal-fiber cosmology.
+
+\section{Open problems}
+Density/VEV mismatch ($\sim$18 orders); elastic moduli from microphysics; radion
+stabilization; the electroweak sector; the electron's form under the new mathematics.
 
 \end{document}

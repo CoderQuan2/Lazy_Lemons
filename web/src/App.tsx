@@ -8,6 +8,7 @@ function App() {
     setIsDownloading(true);
 
     const link = document.createElement('a');
+    // Legacy filename kept: the PDF in web/public/ predates the rename.
     link.href = '/Geotemporal_Hydrodynamics_The_Unified_Fluid_Theory.pdf';
     link.download = 'Geotemporal_Hydrodynamics_The_Unified_Fluid_Theory.pdf';
     document.body.appendChild(link);
@@ -22,26 +23,32 @@ function App() {
   return (
     <div className="container">
       <main className="content">
-        <h1>Geotemporal Hydrodynamics</h1>
-        <h2>The Unified Fluid Theory</h2>
-        <p className="author">By T. Abram (March 2026)</p>
+        <h1>Geotopological Hydrodynamics</h1>
+        <h2>A Falsification-Tested Research Program</h2>
+        <p className="author">By T. Abram (manuscript March 2026; page updated October 2026)</p>
 
         <section className="abstract">
           <h3>Abstract</h3>
           <p>
-            Geotemporal Hydrodynamics (GTH) proposes that spacetime is a macroscopic quantum superfluid
-            rather than an empty geometric manifold. The framework is motivated by the vacuum-energy
-            inconsistency between Quantum Field Theory and standard cosmology, and models the vacuum as a 5D
-            viscoelastic substrate with order parameter Ψ = ρe^iθ.
+            Geotopological Hydrodynamics (GTH) is a research program describing a supersolid
+            vacuum substrate in five-dimensional spacetime. Its firmest result is an anchored
+            theorem for the MOND acceleration scale, a&#8320; = &#8730;(E&#183;G<sub>N</sub>) =
+            1.172&#215;10&#8315;&#185;&#8304; m/s&#178;, 2.33% from the observed value with zero
+            fitted parameters [THEOREM]. Galactic rotation curves are addressed by the baryonic
+            screening kernel g<sub>obs</sub> = g<sub>bar</sub>/(1&#8722;e<sup>&#8722;&#8730;(g<sub>bar</sub>/a&#8320;)</sup>)
+            [PHENOMENOLOGY, &#967;&#178; = 10.54 on SPARC].
           </p>
           <p>
-            In this picture, particles are not point objects but stable topological defects (GeoKnots),
-            while gravity emerges as the long-wavelength acoustic response of the substrate.
+            Baryons are modeled as Y-junction network defects with quarks as zero-dimensional
+            endpoints &mdash; not particles &mdash; with color, flavor, and charge arising from
+            topology [PROVISIONAL]. Honest negatives are recorded at equal weight: gravitational-wave
+            echoes are excluded (seven nulls plus a structural theorem), dark energy admits no
+            mechanism in the current action, and the 1/49 loop factor was a fitting artifact.
+            No miracles; only facts.
           </p>
         </section>
 
         <div className="download-section">
-          {/* UX Enhancement: Accessible download button with loading state and focus styles */}
           <button
             className="download-btn"
             onClick={handleDownload}
@@ -66,6 +73,7 @@ function App() {
               </span>
             )}
           </button>
+          <p className="download-note">March 2026 manuscript (legacy filename preserved).</p>
         </div>
       </main>
     </div>
