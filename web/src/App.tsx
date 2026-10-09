@@ -8,9 +8,10 @@ function App() {
     setIsDownloading(true);
 
     const link = document.createElement('a');
-    // Legacy filename kept: the PDF in web/public/ predates the rename.
-    link.href = '/Geotemporal_Hydrodynamics_The_Unified_Fluid_Theory.pdf';
-    link.download = 'Geotemporal_Hydrodynamics_The_Unified_Fluid_Theory.pdf';
+    // Framework specification PDF (October 2026), served from the repo root.
+    link.href = 'https://raw.githubusercontent.com/CoderQuan2/Lazy_Lemons/main/Geotopological_Hydrodynamics%201.pdf';
+    link.target = '_blank';
+    link.rel = 'noopener';
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -25,16 +26,16 @@ function App() {
       <main className="content">
         <h1>Geotopological Hydrodynamics</h1>
         <h2>A Falsification-Tested Research Program</h2>
-        <p className="author">By T. Abram (manuscript March 2026; page updated October 2026)</p>
+        <p className="author">By T. Abram (theory rebuilt from the ground up, October 2026)</p>
 
         <section className="abstract">
           <h3>Abstract</h3>
           <p>
             Geotopological Hydrodynamics (GTH) is a research program describing a supersolid
             vacuum substrate in five-dimensional spacetime. Its firmest result is an anchored
-            theorem for the MOND acceleration scale, a&#8320; = &#8730;(E&#183;G<sub>N</sub>) =
-            1.172&#215;10&#8315;&#185;&#8304; m/s&#178;, 2.33% from the observed value with zero
-            fitted parameters [THEOREM]. Galactic rotation curves are addressed by the baryonic
+            theorem for the MOND acceleration scale, a&#8320; = &#8730;(E&#183;G<sub>N</sub>), geometric factor exactly 1, modulus selected by
+            uniaxial stress [THEOREM — structural form only; the 2.33% numerical agreement is
+            fitted by ancestry]. Galactic rotation curves are addressed by the baryonic
             screening kernel g<sub>obs</sub> = g<sub>bar</sub>/(1&#8722;e<sup>&#8722;&#8730;(g<sub>bar</sub>/a&#8320;)</sup>)
             [PHENOMENOLOGY, &#967;&#178; = 10.54 on SPARC].
           </p>
@@ -73,7 +74,7 @@ function App() {
               </span>
             )}
           </button>
-          <p className="download-note">March 2026 manuscript (legacy filename preserved).</p>
+          <p className="download-note">Framework specification, October 2026 (76 pages).</p>
         </div>
       </main>
     </div>
